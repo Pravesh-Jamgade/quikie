@@ -1,0 +1,5 @@
+release: python manage.py migrate
+web: gunicorn myproject.wsgi --log-file -
+
+release: ./release-tasks.sh
+web: gunicorn myproject.wsgi --log-file -
