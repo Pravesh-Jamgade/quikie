@@ -21,4 +21,7 @@ from api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', views.index, name='index'),
+    path('api/save/', views.save, name='save'),
+    path('api/get/', views.get, name='get'),
+
 ]
