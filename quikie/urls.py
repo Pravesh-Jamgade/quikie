@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/', views.index, name='index'),
     path('api/save/', views.save, name='save'),
     path('api/get/', views.get, name='get'),
+    path('api/lyrics/', views.lyricsPage, name='lyrics'),
 
 ]

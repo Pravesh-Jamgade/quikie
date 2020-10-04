@@ -1,0 +1,76 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pravesh</title>
+    <link rel="stylesheet" href="{%static 'api/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+
+        <div class="jumbotron text-center">
+            <h1>Lyrics</h1><p>find your lyrics!</p>            
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                        <div class="form-all">
+                                <div id ="form-elem" class="search-container">
+                                  <form action="#" id="padding-1">
+                                    <input type="text" name="author" placeholder="Author.." >
+                                    <input type="text" name="song" placeholder="Song.." >
+                                    <button id="btn-padding" class="btn btn-primary" 
+                                    type="Search" onclick="loadLyrics()">Submit</button>
+                                  </form>
+                                </div>
+                        </div>
+                </div>
+                <div  class="col-sm-4">
+                    <p id ="lyricsDisplay">
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function loadLyrics(){
+            let formData = new FormData(document.querySelector('form'));
+            let author = formData.get('author');
+            let song = formData.get('song');
+            let api = "https://orion.apiseeds.com/api/music/lyric/"+ author+"/"+ song;
+            let apikey = "?apikey=oeO9TEcM4LZn6ZrvMSIXrFUol3wAsoj8p5KAy19wJYpXUM4hjZmK142Mbb8WreQq"; 
+            let url = api+apikey;
+            req = new XMLHttpRequest();
+            req.open("GET", url, true);
+            req.send();
+            req.onload = function () {
+                    // to json object
+                    json = JSON.parse(req.responseText);
+                
+                    // to string from json
+                    var lyrics = json.result.track.text;//JSON.stringify(json.result.track.text);
+
+                    // get all lines
+                    var all = lyrics.split("\n");
+                 
+                    let output="";
+                    for(line in all){
+                        console.log(all[line]);
+                        output = output.concat(all[line], "</br>");
+                    }
+
+                    // render o/p to html
+                    document.getElementById("lyricsDisplay").innerHTML = output.toString();
+                };
+            }
+        </script>
+</body>
+</html>

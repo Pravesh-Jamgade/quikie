@@ -4,8 +4,13 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from .models import Hit
 
+from django.template import loader
 import datetime
 # Create your views here.
+
+def lyricsPage(request):
+	template = loader.get_template('api/index.html')
+	return HttpResponse(template.render({},request))
 
 def index(request):
 	return HttpResponse("Hello, World! You're AwSSome.hahha.")

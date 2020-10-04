@@ -1,0 +1,17 @@
+#form-elem{
+    background-color: rgb(178, 241, 241);
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 10px;
+}
+
+#padding-1{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+#btn-padding{
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
