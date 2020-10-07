@@ -49,3 +49,5 @@ def save(request):
 		return JsonResponse({'status':'false', 'message':" {}".format(e)})
 
 	return HttpResponse("Caught you!")
+
+	
